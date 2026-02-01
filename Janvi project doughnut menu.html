@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+         html{
+            scroll-behavior: smooth;
+        }
+        body{
+            background: linear-gradient(to right, rgb(245, 171, 183), rgb(223, 223, 169));
+            background-repeat: no-repeat;
+            height: 250vh;}
+
+            .top-nav{
+            margin-left: 880px;
+            margin-top: -10px;
+            position: fixed;
+            z-index: 100;
+        }
+
+        /*cart btn css*/
+            .button {
+                margin-top: -64px;
+                margin-right: 288px;
+                float: right;
+                --width: 100px;
+                --height: 35px;
+                --tooltip-height: 35px;
+                --tooltip-width: 90px;
+                --gap-between-tooltip-to-button: 18px;
+                --button-color: #222;
+                --tooltip-color: #fff;
+                width: var(--width);
+                height: var(--height);
+                background: var(--button-color);
+                position: relative;
+                text-align: center;
+                border-radius: 0.5em;
+                font-family: "Arial";
+                transition: background 0.7s;
+            }
+            
+            .button::before {
+                position: absolute;
+                content: attr(data-tooltip);
+                width: var(--tooltip-width);
+                height: var(--tooltip-height);
+                background-color: #555;
+                font-size: 0.9rem;
+                color: #fff;
+                border-radius: 0.25em;
+                line-height: var(--tooltip-height);
+                bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+                left: calc(50% - var(--tooltip-width) / 2);
+            }
+            
+            .button::after {
+                position: absolute;
+                content: "";
+                width: 0;
+                height: 0;
+                border: 10px solid transparent;
+                border-top-color: #555;
+                left: calc(50% - 10px);
+                bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+            }
+            
+            .button::after,
+            .button::before {
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.5s;
+            }
+            
+            .text {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .button-wrapper,
+            .text,
+            .icon {
+                overflow: hidden;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                color: #fff;
+            }
+            
+            .text {
+                top: 0;
+            }
+            
+            .text,
+            .icon {
+                transition: top 0.5s;
+            }
+            
+            .icon {
+                color: #fff;
+                top: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .button:hover {
+                background: #222;
+            }
+            
+            .button:hover .text {
+                top: -100%;
+            }
+            
+            .button:hover .icon {
+                top: 0;
+            }
+            
+            .button:hover:before,
+            .button:hover:after {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .button:hover:after {
+                bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+            }
+            
+            .button:hover:before {
+                bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+            }
+
+            .menu-cards{
+                transition: .5s ease;
+                scale: 1;
+            }
+            .menu-cards:hover{
+                scale: 1.032;
+                cursor: pointer;
+            }
+
+            .filters {
+        margin-right: 16rem;
+        margin-top: 6rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .filters ul {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+       .btn-list {
+        align-items: center;
+        appearance: none;
+        background-color: rgb(255, 202, 211);
+        border-radius: 4px;
+        border-width: 0;
+        box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px, chocolate 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #473126;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: "Urbanist", sans-serif;
+        height: 48px;
+        justify-content: center;
+        line-height: 1;
+        list-style: none;
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        text-align: left;
+        text-decoration: none;
+        transition: box-shadow 0.15s, transform 0.15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow, transform;
+        font-size: 18px;
+      }
+
+       .filters {
+        margin-right: 16rem;
+        margin-top: 6rem;
+        margin-bottom: -4rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .filters ul {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        font-weight: 550;
+      }
+
+       .btn-list:focus {
+        box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+      }
+
+      .btn-list:hover {
+        box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+          rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgb(156, 69, 7) 0 -3px 0 inset;
+        transform: translateY(-2px);
+      }
+
+      .btn-list:active {
+        box-shadow: #d6d6e7 0 3px 7px inset;
+        transform: translateY(2px);
+      }
+
+      .activ {
+        background-color: rgb(253, 117, 140);
+        color: #473126;
+      }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+     <!--logo-->
+        <img src="bakery_logo-removebg-preview (1).png" height="96px" width="96px" 
+        style="margin-left: -840px;">
+
+        <!--searchbar-->
+            <input type="text" placeholder="Search for more" style="width: 500px; padding-left: 24px; height: 44px;
+            border: 2px solid rgb(137, 136, 136); color: white; background: rgb(255, 242, 242); border-radius: 15px; margin-left: 100px; margin-top: -40px; 
+            transform: translateY(-40px); color: black;">
+
+            <button style="font-size: 1.2rem; background: transparent; color: black; border: none; outline: none; margin-left: -44px;
+            transform: translateY(-38px); cursor: pointer; font-family: 100;">
+                <i class="fa fa-search" aria-hidden="true"></i></button>
+
+            <a href="index.html"><button type="button" style="float: right; margin-right: 64px; transform: translateX(-24px); 
+            margin-top: 34px; padding: 12px 12px 12px 12px; 
+            border-radius: 20px; border: 2px solid rgb(202, 84, 0);
+                border-left: chocolate;
+                border-top: chocolate;
+                margin-right: 20px;
+                font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            color: rgb(202, 84, 0);
+            text-decoration: none;
+            transition: .4s ease;
+            background: rgb(255, 202, 211); cursor: pointer;
+            "> Back to main page </button>  </a>  
+    </div> 
+
+    <section class="mainpage">
+        <center><h1 style="transform: translateY(100px);  font-size: 3rem; color: #5c4033;"> Sweet Selections </h1></center>
+
+        <!--filter-->
+        <div class="filters" style="margin-left: 240px;">
+        <ul>
+          <a href="Janvi project cake menu.html"><li class="btn-list" role="button" data-filter="*"> Cake </li></a>
+          <a href="Janvi project doughnut menu.html"><li class="btn-list activ" data-filter=".formals"> Doughnut</li></a>
+          <a href="Janvi project croissant menu.html"><li class="btn-list" data-filter=".sports">Croissant </li></a>
+          <a href="Janvi project macarons menu.html"><li class="btn-list" data-filter=".women">Macarons</li></a>
+          <a href="Janvi project cupcake menu.html"><li class="btn-list" data-filter=".kids">Cupcake</li></a>
+          <a href="Janvi project beverages menu.html"><li class="btn-list" data-filter=".web">Beverages</li></a>
+
+        </ul>
+      </div>
+
+        <!--menu cards-->
+        <!--menucard1-->
+        <div class="menu-cards"  style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-left: 80px; margin-top: 100px;">
+                
+                <img src="Baked Chocolate Frosted Doughnuts - Cooking My Pounds Off.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-88px); width: 300px;
+                margin-top: 44px; color: #473126;"> Chocolate Frosted Doughnut </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -100px; width: 360px;
+                transform: translateX(-26px);">
+                    Fluffy dough topped with rich chocolate icing.
+                    Simple, bold, and endlessly satisfying.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 350" style="margin-top: -50px;">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+                
+                <!--menucard2-->
+                <div class="menu-cards" style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-right: 72px; margin-top: -256px; float: right;">
+                
+                 <img src="Glazed Donuts - Good Real Food.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-106px);
+                margin-top: 40px; color: #473126;"> Glazed Doughnuts </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Soft, airy dough coated in a smooth vanilla glaze.
+A timeless favorite that never goes out of style.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 450">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+
+            <!--menucard3-->
+        <div class="menu-cards"  style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-left: 80px; margin-top: 40px;">
+                
+                <img src="Homemade Vegan Boston Cream Donuts Easy to Make and Devour.jpeg" height="200px" width="210px" 
+                style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-168px);
+                margin-top: 40px; color: #473126;"> Boston Cream  </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Filled with silky vanilla custard and finished with chocolate glaze.
+A perfect balance of creamy and indulgent.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 400">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+                
+                <!--menucard4-->
+                <div class="menu-cards" style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-right: 72px; margin-top: -256px; float: right;">
+                
+                 <img src="Strawberry Bliss Donuts.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-30px); width: 360px;
+                margin-top: 44px; color: #473126;"> Strawberry Sprinkled </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Sweet strawberry glaze topped with colorful sprinkles.
+Bright, fun, and impossible to resist.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 350" style="margin-top: -60px;">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+
+            <!--menucard5-->
+        <div class="menu-cards"  style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-left: 80px; margin-top: 40px;">
+                
+                <img src="Decadent Delights_ Unleash your Inner Chef with Donut Easy Recipes!.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-140px);
+                margin-top: 40px; color: #473126;"> Chocolate Filled </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Light dough packed with luscious chocolate cream.
+Every bite delivers pure chocolate bliss.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 300">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+                
+                <!--menucard6-->
+                <div class="menu-cards" style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-right: 72px; margin-top: -256px; float: right;">
+                
+                 <img src="Vanilla Cream-Filled Doughnuts Recipe.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(12px);
+                margin-top: 40px; width: 400px; color: #473126;"> Vanilla Cream Filled </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                   Soft doughnut with a smooth vanilla center.
+Classic, comforting, and delightfully rich.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 350" style="margin-top: -60px;">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+
+            <!--menucard7-->
+        <div class="menu-cards"  style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-left: 80px; margin-top: 40px;">
+                
+                <img src="Spiced Apple Cider Donuts with Caramel Glaze.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-148px);
+                margin-top: 40px; color: #473126;"> Caramel Drizzle </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Golden caramel glaze with a buttery finish.
+Sweet, smooth, and wonderfully indulgent.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 450">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+                
+                <!--menucard8-->
+                <div class="menu-cards" style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-right: 72px; margin-top: -256px; float: right;">
+                
+                 <img src="Super Fluffy Baked Cinnamon Sugar Donuts.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-68px); width: 320px;
+                margin-top: 40px; color: #473126;"> Cinnamon Sugar Doughnut </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -110px; width: 360px;
+                transform: translateX(-26px);">
+                    Rolled in warm cinnamon sugar for a cozy flavor.
+A nostalgic treat with a comforting crunch.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 120">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+
+            <!--menucard9-->
+        <div class="menu-cards"  style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-left: 80px; margin-top: 40px;">
+                
+                <img src="Double Chocolate Protein Donuts_ Healthy & Decadent Treats.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-114px);
+                margin-top: 40px; color: #473126;"> Double Chocolate </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Chocolate dough topped with chocolate glaze.
+Made for true chocolate lovers only.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 480">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+                
+                <!--menucard10-->
+                <div class="menu-cards" style="width: 640px; height: 250px; background: white; border-radius: 20px; border: 6px solid rgba(202, 84, 0, 0.75);
+                border-left: chocolate;
+                border-top: chocolate; box-shadow: 0 0 4px rgb(202, 84, 0);
+                margin-right: 20px; margin-right: 72px; margin-top: -256px; float: right;">
+                
+                 <img src="Irresistible Maple Glazed Donuts Recipe for Sweet Bliss.jpeg" height="200px" width="210px" style="margin-top: 26px; margin-left: 24px; border-radius: 20px;" alt="">
+                <h1 style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 600; transform: translateX(-182px);
+                margin-top: 40px; color: #473126;"> Maple Glazed  </h1>
+                <p style="float: right; font-family:Arial, Helvetica, sans-serif; font-weight: 500; margin-top: -140px; width: 360px;
+                transform: translateX(-26px);">
+                    Finished with a smooth maple-flavored glaze.
+Lightly sweet with a warm, rich taste.</p>
+
+                    <!--cart btn-->
+      <div class="button" data-tooltip="Rs. 450" style="margin-top: -60px;">
+        <div class="button-wrapper">
+          <div class="text">Add To Cart</div>
+          <span class="icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart2"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+            </div>
+    </section>
+
+    
+    <!--footer-->
+    <footer id="contact" style="background: linear-gradient(to bottom right, #efa29b, #f3c0bb); height: 32vh; width: 1515px; margin-top: 120px;
+    margin-left: -12px;">
+    <img src="bakery_logo-removebg-preview (1).png" 
+    height="90px" width="90px" style="margin-left: 50px; margin-top: 16px;">
+    <h2 style="margin-top: -60px; margin-left: 160px; font-style: italic;">Find us on</h2> <br>
+
+    <!--insta-->
+    <div class="circle" style="height: 50px; width: 50px; border-radius: 50%; color: #c76c0a; border: 2px solid #c76c0a;
+    margin-left: 150px; margin-top: -12px;">
+    <i class="fa fa-instagram" aria-hidden="true" style="font-size: 2.4rem; margin-left: 8.5px; margin-top: 6px;"></i></div>
+
+    <!--facebook-->
+    <div class="circle" style="height: 50px; width: 50px; border-radius: 50%; color: #c76c0a; border: 2px solid #c76c0a;
+    margin-left: 210px; margin-top: -52px;">
+    <i class="fa fa-facebook" aria-hidden="true" style="font-size: 2.4rem; margin-left: 13px; margin-top: 6px;"></i></div>
+
+    <!--YT-->
+    <div class="circle" style="height: 50px; width: 50px; border-radius: 50%; color: #c76c0a; border: 2px solid #c76c0a;
+    margin-left: 270px; margin-top: -52px;">
+    <i class="fa fa-youtube" aria-hidden="true" style="font-size: 2.4rem; margin-left: 8.5px; margin-top: 6px;"></i></div>
+
+    <h2 style="float: right; margin-top: -110px; margin-right: 215px;">Email Sign-up</h2><br>
+    <input type="email" required placeholder="xyz@gmail.com" style="float: right; margin-top: -84px; margin-right: 100px; width: 240px; padding: 10px 16px 10px 8px;
+    border-radius: 16px;">
+    <button type="submit" style="float: right; background: red; color: white; border-radius: 16px;
+    margin-right: 90px; padding: 8px 16px 8px 16px; font-size: 1rem; margin-top: -84px; border-left: none;"> Join </button>
+
+    <div class="line" style="height: 1px; width: 1465px; float: left; background: #2f1205; margin-left: 30px;"></div> <br>
+    <center><p>&copy; 2025 Mia's Sweet Creations. All Rights Reserved
+</p></center>
+    </footer>
+</body>
+</html>

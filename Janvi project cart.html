@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+         html{
+            scroll-behavior: smooth;
+        }
+        body{
+            background: linear-gradient(to right, rgb(245, 171, 183), rgb(223, 223, 169));
+            background-repeat: no-repeat;
+            height: 160vh;}
+
+            .top-nav{
+            margin-left: 880px;
+            margin-top: 10px;
+            position: fixed;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+     <!--logo-->
+        <img src="bakery_logo-removebg-preview (1).png" height="96px" width="96px" 
+        style="margin-left: -840px;">
+
+        <!--searchbar-->
+            <input type="text" placeholder="Search for more" style="width: 500px; padding-left: 24px; height: 44px;
+            border: 2px solid rgb(137, 136, 136); color: white; background: rgb(255, 242, 242); border-radius: 15px; margin-left: 100px; margin-top: -40px; 
+            transform: translateY(-40px); color: black;">
+
+            <button style="font-size: 1.2rem; background: transparent; color: black; border: none; outline: none; margin-left: -44px;
+            transform: translateY(-38px); cursor: pointer; font-family: 100;">
+                <i class="fa fa-search" aria-hidden="true"></i></button>
+
+            <a href="index.html"><button type="button" style="float: right; margin-right: 64px; transform: translateX(-24px); 
+            margin-top: 34px; padding: 12px 12px 12px 12px; 
+            border-radius: 20px; border: 2px solid rgb(202, 84, 0);
+                border-left: chocolate;
+                border-top: chocolate;
+                margin-right: 20px;
+                font-weight: 600;
+            font-size: 1.2rem;
+            display: block;
+            color: rgb(202, 84, 0);
+            text-decoration: none;
+            transition: .4s ease;
+            background: rgb(255, 202, 211); cursor: pointer;
+            "> Back to main page </button>  </a>  
+    </div> 
+
+    <section style="transform: translateY(140px);">
+        <center><h1 style="color: #2f1205;"> ALMOST THERE! <span style="color: #8e3107;">REVIEW YOUR ORDER AND COMPLETE YOUR PURCHASE</span> </h1></center>
+
+        <div class="cart-label" style="height: 60px; width: 280px; border-radius: 0 25% 0 25% ; background: pink; margin-left: 240px; margin-top: 60px;
+        z-index: 100;">
+            <p style="margin-left: 24px; font-weight: 800; transform: translateY(18px); font-size: 1.2rem;"> YOUR SHOPPING CART </p>
+        </div>
+        <div class="cart-box" style="background: rgb(238, 236, 236); height: 600px; width: 600px; border-radius: 10px; margin-top: -10px; margin-left: 80px;
+        z-index: -1; border: 1px solid black;">
+        <img src="cart icon (1).png" height="240px" width="240px" alt="" style="margin-left: 160px; margin-top: 80px;">
+        <h1 style="font-size: 3.6rem; margin-left: 44px; margin-top: -40px; color: rgb(111, 110, 110); font-weight: 200;">Your Cart is Empty :/</h1>  
+        <p style="font-size: 1.1rem; margin-left: 70px; color: #2f1205; font-weight: 700;">Must add items on the cart before you proceed to check out</p>  
+    </div>
+
+     <div class="cart-label" style="float: right; height: 60px; width: 280px; border-radius: 0 25% 0 25% ; background: pink; margin-left: 240px;
+     margin-right: 300px; margin-top: -655px; transform: translateX(80px);
+        z-index: 100;">
+            <p style="margin-left: 44px; font-weight: 800; font-size: 1.2rem;"> ORDER SUMMARY </p>
+        </div>
+     <div class="cart-box" style="background: rgb(238, 236, 236); float: right; height: 600px; width: 600px; border-radius: 10px; margin-top: -605px; 
+     margin-left: 80px; transform: translateX(-80px);
+        z-index: -1; border: 1px solid black;">
+         <img src="exclamation icon (1).png" height="240px" width="240px" alt="" style="margin-left: 160px; margin-top: 80px;">
+        <h1 style="font-size: 3.2rem; margin-left: 24px; margin-top: -40px; color: rgb(111, 110, 110); font-weight: 200;"> There is no order summary</h1>  
+        <p style="font-size: 1.1rem; margin-left: 70px; color: #2f1205; font-weight: 700;">Must add items on the cart before you proceed to check out</p>  
+    </div>
+    </section>
+
+    
+    <!--footer-->
+    <footer id="contact" style="background: linear-gradient(to bottom right, #efa29b, #f3c0bb); height: 32vh; width: 1515px; margin-top: 240px;
+    margin-left: -12px;">
+    <img src="bakery_logo-removebg-preview (1).png" 
+    height="90px" width="90px" style="margin-left: 50px; margin-top: 16px;">
+    <h2 style="margin-top: -60px; margin-left: 160px; font-style: italic;">Find us on</h2> <br>
+
+    <!--insta-->
+    <div class="circle" style="height: 50px; width: 50px; border-radius: 50%; color: #c76c0a; border: 2px solid #c76c0a;
+    margin-left: 150px; margin-top: -12px;">
+    <i class="fa fa-instagram" aria-hidden="true" style="font-size: 2.4rem; margin-left: 8.5px; margin-top: 6px;"></i></div>
+
+    <!--facebook-->
+    <div class="circle" style="height: 50px; width: 50px; border-radius: 50%; color: #c76c0a; border: 2px solid #c76c0a;
+    margin-left: 210px; margin-top: -52px;">
+    <i class="fa fa-facebook" aria-hidden="true" style="font-size: 2.4rem; margin-left: 13px; margin-top: 6px;"></i></div>
+
+    <!--YT-->
+    <div class="circle" style="height: 50px; width: 50px; border-radius: 50%; color: #c76c0a; border: 2px solid #c76c0a;
+    margin-left: 270px; margin-top: -52px;">
+    <i class="fa fa-youtube" aria-hidden="true" style="font-size: 2.4rem; margin-left: 8.5px; margin-top: 6px;"></i></div>
+
+    <h2 style="float: right; margin-top: -110px; margin-right: 215px;">Email Sign-up</h2><br>
+    <input type="email" required placeholder="xyz@gmail.com" style="float: right; margin-top: -84px; margin-right: 100px; width: 240px; padding: 10px 16px 10px 8px;
+    border-radius: 16px;">
+    <button type="submit" style="float: right; background: red; color: white; border-radius: 16px;
+    margin-right: 90px; padding: 8px 16px 8px 16px; font-size: 1rem; margin-top: -84px; border-left: none;"> Join </button>
+
+    <div class="line" style="height: 1px; width: 1465px; float: left; background: #2f1205; margin-left: 30px;"></div> <br>
+    <center><p>&copy; 2025 Mia's Sweet Creations. All Rights Reserved
+</p></center>
+    </footer>
+</body>
+</html>
