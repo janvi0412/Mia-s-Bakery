@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Cart</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background: linear-gradient(to right, rgb(245,171,183), rgb(223,223,169));
+    margin: 0;
+}
+
+/* HEADER */
+.header{
+    text-align: center;
+    padding: 20px;
+    font-size: 2.5rem;
+    color: #5c4033;
+}
+
+/* BACK BUTTON */
+.back{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgb(255,202,211);
+    padding: 10px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #c65400;
+    font-weight: bold;
+}
+
+/* CART CONTAINER */
+.cart-container{
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* CARD */
+.cart-card{
+    background: white;
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0 0 8px rgba(202,84,0,0.4);
+}
+
+.cart-card img{
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+}
+
+/* TEXT */
+.cart-info{
+    flex: 1;
+}
+
+.cart-info h3{
+    margin: 0;
+}
+
+.price{
+    color: #c65400;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* REMOVE BUTTON */
+.remove-btn{
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* TOTAL */
+.total-box{
+    text-align: right;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* EMPTY CART */
+.empty{
+    text-align: center;
+    font-size: 1.5rem;
+    color: gray;
+    margin-top: 100px;
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back">⬅ Back to Menu</a>
+
+<h1 class="header">Your Cart 🛒</h1>
+
+<div class="cart-container" id="cart-items"></div>
+
+<div class="cart-container total-box">
+Total: ₹<span id="total">0</span>
+</div>
+
+<script>
+
+function loadCart(){
+
+    let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+    let container = document.getElementById('cart-items');
+    let total = 0;
+
+    if(cart.length === 0){
+        container.innerHTML = "<div class='empty'>Your cart is empty 😢</div>";
+        document.getElementById('total').innerText = 0;
+        return;
+    }
+
+    container.innerHTML = cart.map((item, index) => {
+
+        total += item.price * item.quantity;
+
+        return `
+        <div class="cart-card">
+            <img src="${item.image}">
+            <div class="cart-info">
+                <h3>${item.name}</h3>
+                <p class="price">₹${item.price} x ${item.quantity} = ₹${item.price * item.quantity}</p>
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </div>
+        `;
+    }).join("");
+
+    document.getElementById('total').innerText = total;
+}
+
+function removeItem(index){
+    let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+    cart.splice(index,1);
+    localStorage.setItem('spiceCart', JSON.stringify(cart));
+    loadCart();
+}
+
+loadCart();
+
+</script>
+
+</body>
+</html>

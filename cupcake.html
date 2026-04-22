@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cupcake Menu</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background: linear-gradient(to right, rgb(245,171,183), rgb(223,223,169));
+    margin: 0;
+    font-family: Arial;
+}
+
+/* TOP NAV */
+.top-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+/* LOGO */
+.logo{
+    height: 80px;
+}
+
+/* SEARCH */
+.search-box{
+    display: flex;
+    align-items: center;
+}
+
+.search{
+    width: 400px;
+    height: 40px;
+    border-radius: 15px;
+    border: 2px solid gray;
+    padding-left: 15px;
+}
+
+.search-icon{
+    margin-left: -35px;
+    cursor: pointer;
+}
+
+/* ✅ BOTH BUTTONS SAME STYLE + SAME SIZE */
+.back-btn,
+.pay-btn{
+    background: rgb(255,202,211);
+    border: 2px solid chocolate;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #c65400;
+    width: 200px;              /* slightly increased */
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    white-space: nowrap;       /* ✅ IMPORTANT FIX */
+}
+
+/* HOVER EFFECT */
+.back-btn:hover,
+.pay-btn:hover{
+    background: rgb(253,117,140);
+}
+
+/* TITLE */
+.title{
+    margin-top: 110px;
+    font-size: 3rem;
+    color: #5c4033;
+}
+
+/* FILTERS */
+.filters{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.filters ul{
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.btn-list{
+    padding: 10px 18px;
+    background: rgb(255,202,211);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.activ{
+    background: rgb(253,117,140);
+}
+
+/* GRID */
+.menu-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 40px 80px;
+}
+
+/* CARD */
+.menu-cards{
+    background: white;
+    border-radius: 20px;
+    border: 6px solid rgba(202,84,0,0.75);
+    border-left: chocolate;
+    border-top: chocolate;
+    box-shadow: 0 0 8px rgb(202,84,0);
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.menu-cards:hover{
+    transform: scale(1.03);
+}
+
+.menu-cards img{
+    width: 180px;
+    height: 180px;
+    border-radius: 15px;
+}
+
+/* TEXT */
+.content{
+    flex: 1;
+}
+
+.price-cart{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.price{
+    font-weight: bold;
+    color: #c65400;
+}
+
+.cart-btn{
+    background: #222;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cart-btn:hover{
+    background: #444;
+}
+
+/* FOOTER */
+footer{
+    background: linear-gradient(to bottom right, #efa29b, #f3c0bb);
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social i{
+    font-size: 1.8rem;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.email-box input{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.email-box button{
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* QTY BOX */
+.qty-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.qty-box button{
+    background: #222;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.qty-box button:hover{
+    background: #444;
+}
+
+/* quantity number */
+.qty{
+    font-weight: bold;
+    font-size: 16px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* NAV RIGHT */
+.nav-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-nav">
+    <img src="bakery_logo-removebg-preview.png" class="logo">
+
+    <div class="search-box">
+        <input type="text" class="search" placeholder="Search for more">
+        <i class="fa fa-search search-icon"></i>
+    </div>
+
+    <div class="nav-right">
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        <a href="cartpage.html" class="pay-btn" style="display:none;">
+            Proceed to Pay
+        </a>
+    </div>
+</div>
+
+<center>
+<h1 class="title">Sweet Selections</h1>
+</center>
+
+<div class="filters">
+<ul>
+<li class="btn-list">Cake</li>
+<li class="btn-list">Doughnut</li>
+<li class="btn-list">Croissant</li>
+<li class="btn-list">Macarons</li> <!-- ✅ active here -->
+<li class="btn-list activ">Cupcake</li>
+<li class="btn-list">Beverages</li>
+</ul>
+</div>
+<!-- MENU GRID -->
+<!-- MENU GRID -->
+<!-- MENU GRID -->
+<div class="menu-container">
+
+<!-- CUPCAKE 1 -->
+<div class="menu-cards">
+<img src="cupcake1.jpg">
+<div class="content">
+<h2>Vanilla Cupcake</h2>
+<p>Soft and fluffy classic vanilla.</p>
+
+<div class="price-cart">
+<span>₹120</span>
+<button class="cart-btn" onclick="showQty(this,'Vanilla Cupcake',120,'cupcake1.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 2 -->
+<div class="menu-cards">
+<img src="cupcake2.jpg">
+<div class="content">
+<h2>Chocolate Cupcake</h2>
+<p>Rich chocolate delight.</p>
+
+<div class="price-cart">
+<span>₹140</span>
+<button class="cart-btn" onclick="showQty(this,'Chocolate Cupcake',140,'cupcake2.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 3 -->
+<div class="menu-cards">
+<img src="cupcake3.jpg">
+<div class="content">
+<h2>Red Velvet Cupcake</h2>
+<p>Velvety smooth & creamy.</p>
+
+<div class="price-cart">
+<span>₹160</span>
+<button class="cart-btn" onclick="showQty(this,'Red Velvet Cupcake',160,'cupcake3.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 4 -->
+<div class="menu-cards">
+<img src="cupcake4.jpg">
+<div class="content">
+<h2>Strawberry Cupcake</h2>
+<p>Fresh fruity flavor.</p>
+
+<div class="price-cart">
+<span>₹150</span>
+<button class="cart-btn" onclick="showQty(this,'Strawberry Cupcake',150,'cupcake4.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 5 -->
+<div class="menu-cards">
+<img src="cupcake5.jpg">
+<div class="content">
+<h2>Oreo Cupcake</h2>
+<p>Creamy with crunchy bites.</p>
+
+<div class="price-cart">
+<span>₹170</span>
+<button class="cart-btn" onclick="showQty(this,'Oreo Cupcake',170,'cupcake5.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 6 -->
+<div class="menu-cards">
+<img src="cupcake6.jpg">
+<div class="content">
+<h2>Butterscotch Cupcake</h2>
+<p>Sweet caramel richness.</p>
+
+<div class="price-cart">
+<span>₹150</span>
+<button class="cart-btn" onclick="showQty(this,'Butterscotch Cupcake',150,'cupcake6.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 7 -->
+<div class="menu-cards">
+<img src="cupcake7.jpg">
+<div class="content">
+<h2>Black Forest Cupcake</h2>
+<p>Chocolate base with cherry filling & cream.</p>
+
+<div class="price-cart">
+<span>₹180</span>
+<button class="cart-btn" onclick="showQty(this,'Black Forest Cupcake',180,'cupcake7.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 8 -->
+<div class="menu-cards">
+<img src="cupcake8.jpg">
+<div class="content">
+<h2>KitKat Cupcake</h2>
+<p>Loaded with crunchy KitKat & chocolate cream.</p>
+
+<div class="price-cart">
+<span>₹190</span>
+<button class="cart-btn" onclick="showQty(this,'KitKat Cupcake',190,'cupcake8.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 9 -->
+<div class="menu-cards">
+<img src="cupcake9.jpg">
+<div class="content">
+<h2>Mango Cupcake</h2>
+<p>Fresh mango flavor with creamy topping.</p>
+
+<div class="price-cart">
+<span>₹160</span>
+<button class="cart-btn" onclick="showQty(this,'Mango Cupcake',160,'cupcake9.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CUPCAKE 10 -->
+<div class="menu-cards">
+<img src="cupcake10.jpg">
+<div class="content">
+<h2>Nutella Cupcake</h2>
+<p>Rich Nutella-filled indulgence.</p>
+
+<div class="price-cart">
+<span>₹200</span>
+<button class="cart-btn" onclick="showQty(this,'Nutella Cupcake',200,'cupcake10.jpg')">Add</button>
+
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<!-- FOOTER -->
+<footer>
+<div class="footer-content">
+
+<div>
+<img src="bakery_logo-removebg-preview.png" height="80">
+<p>© 2025 Mia's Sweet Creations</p>
+</div>
+
+<div class="social">
+<i class="fa fa-instagram"></i>
+<i class="fa fa-facebook"></i>
+<i class="fa fa-youtube"></i>
+</div>
+
+<div class="email-box">
+<input type="email" placeholder="xyz@gmail.com">
+<button>Join</button>
+</div>
+
+</div>
+</footer>
+
+</footer>
+
+<script>
+
+function goToCart(){
+    window.location.href = "cart.html";
+}
+
+function showQty(btn, name, price, image){
+    let parent = btn.parentElement;
+    let qtyBox = parent.querySelector(".qty-box");
+
+    btn.style.display = "none";
+    qtyBox.style.display = "flex";
+
+    addToCart(name, price, image, 1);
+}
+
+function changeQty(btn, change){
+    let qtySpan = btn.parentElement.querySelector(".qty");
+    let qty = parseInt(qtySpan.innerText);
+
+    qty += change;
+
+    let card = btn.closest(".menu-cards");
+    let name = card.querySelector("h2").innerText;
+
+    if(qty <= 0){
+        btn.parentElement.style.display = "none";
+        card.querySelector(".cart-btn").style.display = "inline-block";
+        removeItem(name);
+        return;
+    }
+
+    qtySpan.innerText = qty;
+    updateQty(name, qty);
+}
+
+function addToCart(name, price, image, qty){
+    let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+
+    let existing = cart.find(item => item.name === name);
+
+    if(existing){
+        existing.quantity += qty;
+    } else {
+        cart.push({name, price, image, quantity: qty});
+    }
+
+    localStorage.setItem('spiceCart', JSON.stringify(cart));
+    document.querySelector(".pay-btn").style.display = "block";
+}
+
+function updateQty(name, qty){
+    let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+    let item = cart.find(i => i.name === name);
+
+    if(item){
+        item.quantity = qty;
+    }
+
+    localStorage.setItem('spiceCart', JSON.stringify(cart));
+}
+
+function removeItem(name){
+    let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+    cart = cart.filter(i => i.name !== name);
+
+    localStorage.setItem('spiceCart', JSON.stringify(cart));
+
+    if(cart.length === 0){
+        document.querySelector(".pay-btn").style.display = "none";
+    }
+}
+
+window.onload = function(){
+    let cart = JSON.parse(localStorage.getItem('spiceCart')) || [];
+    if(cart.length > 0){
+        document.querySelector(".pay-btn").style.display = "block";
+    }
+}
+
+</script>
+</body>
+</html>

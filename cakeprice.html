@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Cart</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI';
+    background: linear-gradient(to right, #f5abb7, #dfdfa9);
+}
+
+/* NAV */
+.nav{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    background:white;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#c65400;
+    font-weight:bold;
+}
+
+/* MAIN */
+.container{
+    display:flex;
+    gap:30px;
+    padding:40px;
+}
+
+/* LEFT */
+.cart{
+    flex:2;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+}
+
+/* ITEM */
+.item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    border-bottom:1px solid #eee;
+    padding:15px 0;
+}
+
+.item img{
+    width:80px;
+    border-radius:10px;
+}
+
+/* REMOVE */
+.remove{
+    margin-left:auto;
+    background:red;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* RIGHT */
+.summary{
+    flex:1;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    height:fit-content;
+}
+
+.summary div{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+}
+
+.total{
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* BUTTON */
+.checkout{
+    width:100%;
+    padding:12px;
+    background:#c65400;
+    color:white;
+    border:none;
+    border-radius:10px;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+    <h2>My Cart 🛒</h2>
+    <a href="index.html">← Back to Menu</a>
+</div>
+
+<div class="container">
+
+<div class="cart">
+    <h2>Your Items</h2>
+    <div id="cart-items"></div>
+</div>
+
+<div class="summary">
+    <h2>Summary</h2>
+
+    <div><span>Subtotal</span><span id="subtotal">₹0</span></div>
+    <div><span>Delivery</span><span>₹20</span></div>
+    <div class="total"><span>Total</span><span id="total">₹0</span></div>
+
+    <button class="checkout">Checkout</button>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
